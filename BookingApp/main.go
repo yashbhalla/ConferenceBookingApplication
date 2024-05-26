@@ -23,7 +23,8 @@ func main() {
 	var email string
 	var userTickets uint
 
-	for {
+	for remainingTickets > 0 && len(bookings) < 50 {
+
 		fmt.Println("Enter your first name:")
 		fmt.Scan(&firstName)
 
@@ -36,23 +37,46 @@ func main() {
 		fmt.Println("Enter the number of tickets required: ")
 		fmt.Scan(&userTickets)
 
-		//Misc
-		remainingTickets = remainingTickets - userTickets
-		bookings = append(bookings, firstName+" "+lastName)
+		//Conditional Stmts
+		isValidName := len(firstName) >= 2 && len(lastName) >= 2
+		isValidEmail := strings.Contains(email, "@")
+		isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
 
-		fmt.Printf("Thank you %v %v for booking %v tickets for the conference with us. You will receive a confirmation email on %v\n", firstName, lastName, userTickets, email)
-		fmt.Printf("\n%v are the number of tickets remaining for the %v\n", remainingTickets, conferenceName)
+		if isValidName && isValidEmail && isValidTicketNumber {
 
-		firstNames := []string{}
+			remainingTickets = remainingTickets - userTickets
+			bookings = append(bookings, firstName+" "+lastName)
 
-		for _, booking := range bookings { //for-each loop
-			//the underscore is considered as a blank identifier "_", it comes in place of index - meaning we have a variable there but we don't need to use it right now so we skipping it
-			names := strings.Fields(booking)
-			firstNames = append(firstNames, names[0])
+			fmt.Printf("Thank you %v %v for booking %v tickets for the conference with us. You will receive a confirmation email on %v\n", firstName, lastName, userTickets, email)
+			fmt.Printf("\n%v are the number of tickets remaining for the %v\n", remainingTickets, conferenceName)
+
+			firstNames := []string{}
+
+			for _, booking := range bookings { //for-each loop
+				//the underscore is considered as a blank identifier "_", it comes in place of index - meaning we have a variable there but we don't need to use it right now so we skipping it
+				names := strings.Fields(booking)
+				firstNames = append(firstNames, names[0])
+			}
+
+			fmt.Printf("Bookings done by: %v\n", bookings)
+			fmt.Printf("The first names of bookings are: %v\n", firstNames)
+
+			noTicketsRemaining := remainingTickets == 0
+
+			if noTicketsRemaining {
+				fmt.Println("Our conference is booked out. Come back next year!")
+				break
+			}
+		} else {
+			if !isValidName {
+				fmt.Println("The first name or last name entered is too short.")
+			}
+			if !isValidEmail {
+				fmt.Println("The email address doesn't contain the @ sign.")
+			}
+			if !isValidTicketNumber {
+				fmt.Println("The number of tickets is invalid.")
+			}
 		}
-
-		fmt.Printf("Bookings done by: %v\n", bookings)
-		fmt.Printf("The first names of bookings are: %v\n", firstNames)
-
 	}
 }
