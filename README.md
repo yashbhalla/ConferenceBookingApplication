@@ -1,16 +1,18 @@
 # Conference Booking Application
 
-This project is a basic conference booking application developed in Go. It serves as a learning exercise to acquire proficiency in GoLang and expand skills in software development. The project covers fundamental concepts such as variables, data types, control structures, functions, error handling, and concurrency, offering a robust introduction to Go development.
+Welcome to the Conference Booking Application! This project, developed using GoLang, serves as an educational endeavor to enhance proficiency in Go programming. By engaging with various fundamental concepts such as variables, data types, control structures, functions, error handling, and concurrency, this application provides a comprehensive learning experience for both beginners and intermediate developers.
+
+## Overview
+
+The Conference Booking Application facilitates the booking of tickets for conferences. Users can conveniently reserve tickets by providing their first name, last name, email ID, and the desired number of tickets. Each user has the flexibility to book multiple tickets, up to a maximum limit of 50 tickets per transaction.
 
 ## Features
 
-- Allows users to book tickets for a conference.
-- Users input their first name, last name, email ID, and the number of tickets required.
-- Each user can book multiple tickets, with a limit of 50 tickets for the conference.
-- Validates email IDs to ensure they end with ".com".
-- Ensures the number of tickets is an integer.
-- Sends an email confirmation to users upon successful booking (simulated in the terminal).
-
+- User-Friendly Interface: The application offers a straightforward interface for users to input their booking details.
+- Validation Checks: Robust validation ensures that email IDs end with ".com" and that the number of tickets is of integer type only.
+- Email Confirmation: Upon successful booking, users receive a simulated email confirmation within the terminal, providing a real-time use case scenario.
+- Concurrency: Leveraging Go's concurrency features, the application efficiently handles multiple booking requests concurrently, ensuring smooth operation even during peak times.
+  
 ## Usage
 
 1. Clone the repository:
